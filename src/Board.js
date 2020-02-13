@@ -151,30 +151,57 @@
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
       // set var MDCI => arg
+      var MDCI = majorDiagonalColumnIndexAtFirstRow;
+      var n = this.get('n');
       // declare conflictingCOOR array
 
-      // iterate from 0 to N
-        // declare var x = MCDI + current N
-        // declare var y = x + 1
-        // add to conflictingCOOR arry ( x , y )
+      var CC = [];
 
+      // iterate from 0 to N
+      for (var i = 0; i < n; i++) {
+        // declare var x = MCDI + current N
+        var x = MDCI + i;
+        // declare var y = x + 1
+        var y = x - MDCI;
+        // add to conflictingCOOR arry ( x , y )
+        if (x >= 0 && x < n) {
+          CC.push([x, y]);
+        }
+      }
       // declare count
+      var count = 0;
       // iterate over CC array
+      for (var j = 0; j < CC.length; j++) {
         // if board space at current coordinate has a piece
-          // add to count
+        if (this.get(CC[j][0])[CC[j][1]] === 1) {
+          count++;
+        }
+      }
       // if count is more than 1
-        // return true
+      // return true
       // else
         // return false
+        if (count > 1) {
+          return true;
+        }
+
+        return false;
 
     },
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      // declare possible MDCI array
+      var n = this.get('n');
       // iterate from (2 - n) to (n - 2)
-        //  if hasMRCat passing in current n element is true
-          // return true
+      for (var greek = (2 - n); greek <= (n - 2); greek++) {
+          //  if hasMRCat passing in current n element is true
+        if (this.hasMajorDiagonalConflictAt(greek)) {
+            // return true
+            return true;
+        }
+      }
+
       // return false
+      return false;
     },
 
 
