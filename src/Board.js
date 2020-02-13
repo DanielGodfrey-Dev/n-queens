@@ -97,7 +97,7 @@
 
     hasRowConflictAt: function(rowIndex) {
 
-      this.checkConflict(this.get(rowIndex));
+      return this.checkConflict(this.get(rowIndex));
 
     },
 
@@ -170,8 +170,8 @@
       var CC = [];
 
       for (var i = 0; i < n; i++) {
-        var x = MDCI + i;
-        var y = x - MDCI;
+        var y = MDCI + i;
+        var x = y - MDCI;
         if (x >= 0 && x < n) {
           CC.push([x, y]);
         }
@@ -183,7 +183,7 @@
     hasAnyMajorDiagonalConflicts: function() {
       var n = this.get('n');
 
-      for (var greek = (2 - n); greek <= (n - 2); greek++) {
+      for (var greek = (n - 2); greek >= (2 - n); greek--) {
         if (this.hasMajorDiagonalConflictAt(greek)) {
           return true;
         }

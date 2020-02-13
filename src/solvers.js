@@ -14,9 +14,24 @@
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n rooks placed such that none of them can attack each other
 
 
+var makeEmptyMatrix = function(n) {
+  return _(_.range(n)).map(function() {
+    return _(_.range(n)).map(function() {
+      return 0;
+    });
+  });
+};
 
 window.findNRooksSolution = function(n) {
-  var solution = undefined; //fixme
+  var solution = undefined;
+
+  var matrix = makeEmptyMatrix(n);
+
+  for (var i = 0; i < n; i++) {
+    matrix[i][i] = 1;
+  }
+
+  solution = matrix;
 
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;
@@ -24,7 +39,15 @@ window.findNRooksSolution = function(n) {
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function(n) {
-  var solutionCount = undefined; //fixme
+  var factorial = function(n) {
+    return (n !== 1) ? n * factorial(n - 1) : 1;
+  };
+
+  var solutionCount = factorial(n);
+
+  //n! counts of the fact that we can ignore any spaces that cannot be filled
+  //on the next row lookup. We have proved this mathematically :p
+
 
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
   return solutionCount;
