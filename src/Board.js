@@ -149,10 +149,11 @@
     // --------------------------------------------------------------
     //
     // test if a specific major diagonal on this board contains a conflict
-    checkDiagonalConflict: function(conflictsArray){
+    checkDiagonalConflict: function(conflictsArray) {
       // declare count
       var count = 0;
       // iterate over CC array
+      // console.log(conflictsArray);
       for (var j = 0; j < conflictsArray.length; j++) {
         // if board space at current coordinate has a piece
         if (this.get(conflictsArray[j][0])[conflictsArray[j][1]] === 1) {
@@ -162,12 +163,12 @@
       // if count is more than 1
       // return true
       // else
-        // return false
-        if (count > 1) {
-          return true;
-        }
+      // return false
+      if (count > 1) {
+        return true;
+      }
 
-        return false;
+      return false;
     },
 
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
@@ -189,6 +190,7 @@
           CC.push([x, y]);
         }
       }
+
       return this.checkDiagonalConflict(CC);
 
     },
@@ -197,10 +199,10 @@
       var n = this.get('n');
       // iterate from (2 - n) to (n - 2)
       for (var greek = (2 - n); greek <= (n - 2); greek++) {
-          //  if hasMRCat passing in current n element is true
+        //  if hasMRCat passing in current n element is true
         if (this.hasMajorDiagonalConflictAt(greek)) {
-            // return true
-            return true;
+          // return true
+          return true;
         }
       }
 
@@ -216,22 +218,40 @@
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
       // set var MDCI => arg
+      var MDCI = minorDiagonalColumnIndexAtFirstRow;
       // declare conflictingCOOR array
+      var CC = [];
 
       // iterate from var i = 0 to MDCI, inclusive
+      for (var i = 0; i <= MDCI; i++) {
         // x is i
         // y is MDCI - i
         // add to CC (x, y)
+        var x = i;
+        var y = MDCI - i;
+        if (x < this.get('n') && y < this.get('n')) {
+        CC.push([x, y]);
+        }
+      }
 
-      // return checkDiagonalConflicts passing in CC
+      // console.log(CC);
+      // return checkDiagonalConflict passing in CC
+      return this.checkDiagonalConflict(CC);
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
       // iterate from 1 to (2(n-1)-1)
+      var n = this.get('n');
+      for (var j = 1; j < (2 * (n - 1)); j++) {
         // if hasMinorDiagonalConflictAt passed in element is true
+        if (this.hasMinorDiagonalConflictAt(j)) {
           //reutrn true
+          return true;
+        }
+      }
       // return false
+      return false;
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
