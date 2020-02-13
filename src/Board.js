@@ -168,10 +168,13 @@
         // return false
 
     },
-
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+      // declare possible MDCI array
+      // iterate from (2 - n) to (n - 2)
+        //  if hasMRCat passing in current n element is true
+          // return true
+      // return false
     },
 
 
