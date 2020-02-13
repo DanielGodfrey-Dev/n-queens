@@ -150,7 +150,23 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      // set var MDCI => arg
+      // declare conflictingCOOR array
+
+      // iterate from 0 to N
+        // declare var x = MCDI + current N
+        // declare var y = x + 1
+        // add to conflictingCOOR arry ( x , y )
+
+      // declare count
+      // iterate over CC array
+        // if board space at current coordinate has a piece
+          // add to count
+      // if count is more than 1
+        // return true
+      // else
+        // return false
+
     },
 
     // test if any major diagonals on this board contain conflicts
