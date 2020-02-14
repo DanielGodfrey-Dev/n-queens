@@ -55,10 +55,61 @@ window.countNRooksSolutions = function(n) {
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
-  var solution = undefined; //fixme
 
-  console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
-  return solution;
+  var board = new Board(makeEmptyMatrix(n));
+
+  if (n === 0) {
+    return [];
+  }
+
+  if (n === 1) {
+    return [[1]];
+  }
+
+  // if (n === 2 || n === 3) {
+  //   return null;
+  // }
+
+  //!!!
+  //need to use correct syntax and variables/function calls on below
+  //!!!
+
+  var firstRow = board.get(0);
+  //create a function that checks if placed piece has any conflicts on next row
+  var checkElement = function(row) {
+    // iterate over first row
+    for (i = 0; i < row.length; i++) {
+      row[i] = 1;
+      // set space to 1
+      // if queen conflict
+      if (this.hasAnyQueenConflictsOn(row, i)) {
+        // set space back to zero
+        row[i] = 0;
+      } else {
+      // if no queen conflicts
+        if (i + 1 !== n) {
+        //if next row index is not n
+          board.checkElement(i + 1);
+          //call recurs with next row index
+        } else {
+          return board;
+        }
+
+        // else return matrix
+      }
+}
+
+    checkElement(firstRow);
+  };
+
+  // at element, set to 1
+  // if queen conflict is false
+  // iterate over next row
+
+
+
+  // console.log('Single solution for ' + n + ' queens:', JSON.stringify(board));
+  // return board;
 };
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
